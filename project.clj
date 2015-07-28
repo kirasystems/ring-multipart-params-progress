@@ -3,5 +3,6 @@
   :url "https://github.com/kirasystems/ring-multipart-params-progress"
   :license {:name "The MIT License"
             :url "http://opensource.org/licenses/MIT"}
-  :dependencies []
+  :dependencies [[ring "1.3.2"]
+                 [commons-fileupload "1.3.1"]]
   :profiles {:dev {:dependencies [[org.clojure/clojure "1.7.0"]]}})
