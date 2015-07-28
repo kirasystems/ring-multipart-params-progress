@@ -1,6 +1,6 @@
 # ring-multipart-params-progress
 
-A Clojure library designed to ... well, that part is up to you.
+Ring multipart-params middleware with progress support.
 
 ## Usage
 
@@ -8,7 +8,6 @@ FIXME
 
 ## License
 
-Copyright © 2015 FIXME
+Copyright © 2009-2010 Mark McGranaghan, 2015 Kira Inc.
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+Distributed under the MIT License.
