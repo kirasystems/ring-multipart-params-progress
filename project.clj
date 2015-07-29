@@ -5,4 +5,5 @@
             :url "http://opensource.org/licenses/MIT"}
   :dependencies [[ring "1.3.2"]
                  [commons-fileupload "1.3.1"]]
-  :profiles {:dev {:dependencies [[org.clojure/clojure "1.7.0"]]}})
+  :profiles {:dev {:dependencies [[org.clojure/clojure "1.7.0"]]}}
+  :deploy-repositories {"clojars" {:sign-releases false}})
