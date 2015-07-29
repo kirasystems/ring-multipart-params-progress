@@ -1,4 +1,4 @@
-(ns ring.middelware.multipart-params-progress
+(ns ring.middleware.multipart-params-progress
   "Middleware that parses multipart request bodies into parameters.
   This middleware is necessary to handle file uploads from web browsers.
   Ring comes with two different multipart storage engines included:
@@ -15,10 +15,10 @@
 
 (defn- progress-listener
   "Create a progress listener that calls the supplied function."
-  [update-fn]
+  [request update-fn]
   (reify ProgressListener
     (update [this bytes-read content-length items]
-      (update-fn bytes-read content-length items))))
+      (update-fn request bytes-read content-length items))))
 
 (defn- multipart-form?
   "Does a request have a multipart form?"
@@ -45,10 +45,10 @@
 
 (defn- file-item-seq
   "Create a seq of FileItem instances from a request context."
-  [^ProgressListener progress-fn context]
+  [request ^ProgressListener progress-fn context]
   (let [upload (if progress-fn
-                 (-> (FileUpload.)
-                     (.setProgressListener (progress-listener progress-fn)))
+                 (doto (FileUpload.)
+                   (.setProgressListener (progress-listener request progress-fn)))
                  (FileUpload.))]
     (file-item-iterator-seq
       (.getItemIterator ^FileUpload upload context))))
@@ -68,7 +68,7 @@
   "Parse a map of multipart parameters from the request."
   [request encoding store progress-fn]
   (->> (request-context request encoding)
-       (file-item-seq progress-fn)
+       (file-item-seq request progress-fn)
        (map #(parse-file-item % store encoding))
        (reduce (fn [m [k v]] (assoc-conj m k v)) {})))
 
