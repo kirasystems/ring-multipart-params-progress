@@ -1,4 +1,4 @@
-(defproject ring-multipart-params-progress "0.1.1"
+(defproject kirasystems/ring-multipart-params-progress "0.1.1"
   :description "Ring multipart-params with progress support."
   :url "https://github.com/kirasystems/ring-multipart-params-progress"
   :license {:name "The MIT License"
